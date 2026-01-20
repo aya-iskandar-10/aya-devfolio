@@ -1,0 +1,180 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 270 30% 6%;
+    --foreground: 270 20% 98%;
+
+    --card: 270 30% 9%;
+    --card-foreground: 270 20% 98%;
+
+    --popover: 270 30% 9%;
+    --popover-foreground: 270 20% 98%;
+
+    --primary: 280 85% 65%;
+    --primary-foreground: 270 30% 6%;
+
+    --secondary: 320 70% 60%;
+    --secondary-foreground: 270 20% 98%;
+
+    --muted: 270 20% 15%;
+    --muted-foreground: 270 15% 60%;
+
+    --accent: 300 75% 55%;
+    --accent-foreground: 270 20% 98%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 270 20% 98%;
+
+    --border: 270 20% 18%;
+    --input: 270 20% 18%;
+    --ring: 280 85% 65%;
+
+    --radius: 0.75rem;
+
+    /* Custom design tokens - Warm purple theme */
+    --gradient-primary: linear-gradient(135deg, hsl(280 85% 65%) 0%, hsl(320 70% 60%) 100%);
+    --gradient-card: linear-gradient(135deg, hsl(270 30% 11%) 0%, hsl(270 30% 8%) 100%);
+    --gradient-glow: radial-gradient(ellipse at center, hsl(280 85% 65% / 0.2) 0%, transparent 70%);
+    --gradient-hero: linear-gradient(180deg, hsl(270 30% 8%) 0%, hsl(270 30% 4%) 100%);
+    
+    --shadow-glow: 0 0 60px hsl(280 85% 65% / 0.2);
+    --shadow-card: 0 4px 24px hsl(0 0% 0% / 0.3);
+    --shadow-card-hover: 0 8px 40px hsl(280 85% 65% / 0.25);
+
+    --font-heading: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
+
+    --sidebar-background: 270 30% 9%;
+    --sidebar-foreground: 270 20% 98%;
+    --sidebar-primary: 280 85% 65%;
+    --sidebar-primary-foreground: 270 30% 6%;
+    --sidebar-accent: 320 70% 60%;
+    --sidebar-accent-foreground: 270 20% 98%;
+    --sidebar-border: 270 20% 18%;
+    --sidebar-ring: 280 85% 65%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-family: var(--font-heading);
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-heading);
+  }
+
+  code, pre {
+    font-family: var(--font-mono);
+  }
+}
+
+@layer components {
+  .gradient-text {
+    @apply bg-clip-text text-transparent;
+    background-image: var(--gradient-primary);
+  }
+
+  .glass-card {
+    @apply backdrop-blur-xl border border-border/50;
+    background: var(--gradient-card);
+    box-shadow: var(--shadow-card);
+  }
+
+  .glass-card:hover {
+    box-shadow: var(--shadow-card-hover);
+  }
+
+  .glow-effect {
+    position: relative;
+  }
+
+  .glow-effect::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: var(--gradient-primary);
+    border-radius: inherit;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: -1;
+    filter: blur(12px);
+  }
+
+  .glow-effect:hover::before {
+    opacity: 0.5;
+  }
+
+  .tech-badge {
+    @apply px-3 py-1.5 text-sm font-medium rounded-full border transition-all duration-300;
+    background: hsl(var(--primary) / 0.1);
+    border-color: hsl(var(--primary) / 0.3);
+    color: hsl(var(--primary));
+  }
+
+  .tech-badge:hover {
+    background: hsl(var(--primary) / 0.2);
+    border-color: hsl(var(--primary) / 0.5);
+    transform: translateY(-2px);
+  }
+
+  .skill-bar {
+    @apply h-2 rounded-full overflow-hidden;
+    background: hsl(var(--muted));
+  }
+
+  .skill-bar-fill {
+    @apply h-full rounded-full transition-all duration-1000 ease-out;
+    background: var(--gradient-primary);
+  }
+
+  .nav-link {
+    @apply relative px-4 py-2 text-muted-foreground transition-colors duration-300;
+  }
+
+  .nav-link:hover {
+    @apply text-foreground;
+  }
+
+  .nav-link::after {
+    content: '';
+    @apply absolute bottom-0 left-1/2 w-0 h-0.5 -translate-x-1/2 transition-all duration-300;
+    background: var(--gradient-primary);
+  }
+
+  .nav-link:hover::after,
+  .nav-link.active::after {
+    @apply w-full;
+  }
+
+  .section-title {
+    @apply text-3xl md:text-4xl font-bold mb-4;
+  }
+
+  .section-subtitle {
+    @apply text-muted-foreground text-lg max-w-2xl;
+  }
+
+  .floating {
+    animation: floating 6s ease-in-out infinite;
+  }
+
+  @keyframes floating {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-20px); }
+  }
+}
