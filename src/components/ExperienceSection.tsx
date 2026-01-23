@@ -17,7 +17,7 @@ const experiences = [
       'Utilized SQLite and shared preferences for efficient local data management',
       'Focused on clean UI/UX principles throughout development',
     ],
-    technologies: ['Flutter', 'Dart', 'SQLite', 'Supabase', 'Firebase',  'BloC', '\nSpeech-to-Text API', 'ML Kit', 'Git', 'Figma'],
+    technologies: ['Flutter', 'Dart', 'SQLite',  'Firebase', 'Supabase',  'BloC', '\nSpeech-to-Text API', 'ML Kit', 'Git', 'Figma'],
     // projects: [
     //   {
     //     title: 'Face Recognition App',
