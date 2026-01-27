@@ -9,19 +9,20 @@ const projects = [
     description:
       'Comprehensive educational technology platform featuring course management, student tracking, and interactive learning modules.',
     features: [
+      'Course management system',
+      'Student progress tracking',
+      'Interactive learning modules',
       'Assignment submission',
       'Real-time notifications',
-      'Membership card generation',
       'Admin dashboard',
-      'username and password creation',
     ],
-    technologies: ['Flutter', 'Dart', 'REST API', 'BloC'],
+    technologies: ['Flutter', 'Dart', 'Firebase', 'REST API', 'BloC'],
     icon: Smartphone,
     featured: true,
     hasDemo: false,
-    hasApp: false,
+    hasApp: true,
     hasVideo: true,
-    videoUrl: '/videos/edtech-demo.mp4', // You'll add this video file
+    videoUrl: '/videos/edtech-demo.mp4',
   },
   {
     title: 'School Bus Tracking System',
@@ -39,8 +40,8 @@ const projects = [
     technologies: ['Flutter', 'Spring Boot', 'MySQL', 'REST API', 'OSM Maps'],
     icon: Smartphone,
     featured: true,
-    hasDemo: true,
-    hasApp: false,
+    hasDemo: false,
+    hasApp: true,
     hasVideo: false,
   },
   {
@@ -51,35 +52,35 @@ const projects = [
     features: [
       'Real-time face detection',
       'Live camera tracking',
-      'Happy, sad and neutral recognition',
+      'Multiple face recognition',
       'Offline processing',
     ],
     technologies: ['Flutter', 'Dart', 'ML Kit', 'Camera Plugin', 'BloC'],
     icon: Smartphone,
     featured: false,
     hasDemo: false,
-    hasApp: false,
+    hasApp: true,
     hasVideo: true,
     videoUrl: '/videos/face-recognition-demo.mp4',
   },
   {
-    title: 'Voice Transcription App',
+    title: 'Buddy App',
     subtitle: 'Social Companion App',
     description:
-      'Voice transcription mobile app that records voice in arabic language and transcribe it speech to text using Munsit API, with helpful settings features enabling users to share notes and messages easily.',
+      'Social networking application connecting users with shared interests and facilitating meaningful interactions.',
     features: [
       'User matching algorithm',
       'Real-time chat',
       'Activity planning',
       'Interest-based groups',
     ],
-    technologies: ['Flutter', 'Dart', 'sqflite', 'Munsit API', 'BloC'],
+    technologies: ['Flutter', 'Dart', 'Firebase', 'BloC', 'Cloud Messaging'],
     icon: Smartphone,
     featured: false,
     hasDemo: false,
-    hasApp: false,
+    hasApp: true,
     hasVideo: true,
-    videoUrl: '/videos/voice-transcription-demo.mp4',
+    videoUrl: '/videos/buddy-demo.mp4',
   },
   {
     title: 'E-commerce Website',
@@ -95,10 +96,10 @@ const projects = [
     technologies: ['ASP.NET Core MVC', 'C#', 'Bootstrap', 'SQL Server'],
     icon: Globe,
     featured: false,
-    hasDemo: false,
+    hasDemo: true,
     hasApp: false,
-    hasVideo: true,
-    demoLink: '/videos/e-commerce-demo.mp4', // Add your actual demo link
+    hasVideo: false,
+    demoLink: '#',
   },
 ];
 
@@ -119,7 +120,6 @@ const cardVariants = {
   },
 };
 
-// Video Modal Component
 const VideoModal = ({ isOpen, onClose, videoUrl, title }: { 
   isOpen: boolean; 
   onClose: () => void; 
@@ -172,11 +172,9 @@ export const ProjectsSection = () => {
 
   return (
     <section id="projects" className="py-24 relative">
-      {/* Background Accent */}
       <div className="absolute top-1/2 left-0 w-1/3 h-96 bg-primary/5 rounded-full blur-3xl -translate-y-1/2" />
 
       <div className="container mx-auto px-4 relative z-10">
-        {/* Section Header */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -190,7 +188,6 @@ export const ProjectsSection = () => {
           </p>
         </motion.div>
 
-        {/* Projects Grid */}
         <motion.div
           variants={containerVariants}
           initial="hidden"
@@ -207,7 +204,6 @@ export const ProjectsSection = () => {
                 project.featured ? 'lg:col-span-2' : ''
               }`}
             >
-              {/* Project Header */}
               <div className="flex items-start justify-between mb-6">
                 <div className="flex items-start gap-4">
                   <motion.div
@@ -234,10 +230,8 @@ export const ProjectsSection = () => {
                 )}
               </div>
 
-              {/* Description */}
               <p className="text-muted-foreground mb-6">{project.description}</p>
 
-              {/* Features */}
               <div className={`grid ${project.featured ? 'md:grid-cols-2' : ''} gap-3 mb-6`}>
                 {project.features.map((feature, i) => (
                   <motion.div
@@ -254,7 +248,6 @@ export const ProjectsSection = () => {
                 ))}
               </div>
 
-              {/* Action Buttons */}
               <div className="flex flex-wrap gap-3 mb-6">
                 {project.hasVideo && (
                   <motion.button
@@ -292,7 +285,6 @@ export const ProjectsSection = () => {
                 )}
               </div>
 
-              {/* Technologies */}
               <div className="flex flex-wrap gap-2">
                 {project.technologies.map((tech, i) => (
                   <motion.span
@@ -313,7 +305,6 @@ export const ProjectsSection = () => {
         </motion.div>
       </div>
 
-      {/* Video Modal */}
       {selectedVideo && (
         <VideoModal
           isOpen={!!selectedVideo}
